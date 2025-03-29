@@ -34,7 +34,7 @@ const Navbar = () => {
             <Video className="w-5 h-5 text-white" />
           </div>
           <div className="relative flex items-center">
-            <span className="text-2xl font-bold">SRGraphics</span>
+            <span className="text-2xl font-bold">The Wedding Click</span>
             <Clapperboard className="text-white w-4 h-4 absolute top-0 right-[-12px] transform -rotate-12" />
           </div>
         </a>

@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState, useRef } from 'react';
 import { Badge } from "@/components/ui/badge";
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const Index = () => {
   const [headingLanguage, setHeadingLanguage] = useState<'english' | 'hindi'>('english');
@@ -168,17 +169,17 @@ const Index = () => {
             {[
               {
                 state: "Jharkhand",
-                image: "https://images.unsplash.com/photo-1566135640830-bedc83833d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                cities: "Ranchi, Jamshedpur, Dhanbad, Bokaro"
+                image: "/click.jpg",
+                cities: "Koderma, Hazaribagh, Giridih, Ranchi, Jamshedpur, Dhanbad, Bokaro"
               },
               {
                 state: "Bihar",
-                image: "https://images.unsplash.com/photo-1590579226915-d01e14dfab7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "/click2.jpg",
                 cities: "Patna, Gaya, Bhagalpur, Muzaffarpur"
               },
               {
                 state: "Uttar Pradesh",
-                image: "https://images.unsplash.com/photo-1625128576252-13403a93a544?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                image: "/click2.jpg",
                 cities: "Lucknow, Varanasi, Agra, Prayagraj"
               }
             ].map((location, index) => (
@@ -325,7 +326,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                img: "https://images.unsplash.com/photo-1607190074257-dd4b7af0309f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80",
+                img: "/click.jpg",
                 title: "Sarah & Michael",
                 desc: "Beach Wedding"
               },
@@ -340,12 +341,12 @@ const Index = () => {
                 desc: "Rustic Barn"
               },
               {
-                img: "https://images.unsplash.com/photo-1525772764200-be829a35a771?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                img: "/click.jpg",
                 title: "Anna & Thomas",
                 desc: "City Wedding"
               },
               {
-                img: "https://images.unsplash.com/photo-1507217633297-c9815ce2c3f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                img: "/click.jpg",
                 title: "Olivia & William",
                 desc: "Forest Elopement"
               },
@@ -401,9 +402,9 @@ const Index = () => {
               </div>
             </div>
             <div>
-              <h2 className="text-3xl md:text-4xl font-sans font-bold mb-6">About SRGraphics</h2>
+              <h2 className="text-3xl md:text-4xl font-sans font-bold mb-6">About The Wedding Click</h2>
               <p className="text-gray-700 mb-4">
-                With over 10 years of experience capturing wedding moments, SRGraphics specializes in creating timeless memories for couples on their special day.
+                With over 10 years of experience capturing wedding moments, The Wedding Click specializes in creating timeless memories for couples on their special day.
               </p>
               <p className="text-gray-700 mb-6">
                 Our approach combines documentary-style candid photography with cinematic storytelling to create a complete narrative of your wedding journey.
@@ -448,7 +449,7 @@ const Index = () => {
               <div className="bg-brown-500 rounded-full p-2">
                 <Video className="w-6 h-6 text-white" />
               </div>
-              <span>SRGraphics</span>
+              <span>The Wedding Click</span>
             </div>
             <div className="flex gap-8">
               {['Privacy', 'Terms', 'Contact'].map((item) => (
@@ -458,8 +459,23 @@ const Index = () => {
               ))}
             </div>
           </div>
+          {/* Social Media Icons */}
+        <div className="flex justify-center mt-6 space-x-4">
+          <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-lg">
+            <FaFacebookF />
+          </a>
+          <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-lg">
+            <FaTwitter />
+          </a>
+          <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-lg">
+            <FaInstagram />
+          </a>
+          <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-lg">
+            <FaYoutube />
+          </a>
+        </div>
           <div className="mt-8 pt-8 border-t border-white/10 text-center text-sm text-white/60">
-            © {new Date().getFullYear()} SR-Photography. All rights reserved.
+            © {new Date().getFullYear()} The Wedding Click. All rights reserved.
           </div>
         </div>
       </footer>

@@ -21,7 +21,7 @@ const Blog = () => {
       id: 1,
       title: "The Serene Ghats of Ballia",
       excerpt: "Explore the beautiful riverside ghats where we captured stunning pre-wedding photos with the Ganges as a backdrop.",
-      image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1000&auto=format&fit=crop",
+      image: "/click.jpg",
       category: "Photography",
       location: "Ballia City",
       date: "May 15, 2023"
