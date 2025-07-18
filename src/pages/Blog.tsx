@@ -88,10 +88,10 @@ const Blog = () => {
         <div className="container-custom px-4">
           <AnimatedSection>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display mb-4 text-center">
-              Our Photography Journey in Ballia
+              Our Photography Journey in Koderma
             </h1>
             <p className="text-lg md:text-xl text-center max-w-3xl mx-auto mb-8 text-brown-100">
-              Capturing the beauty, culture and special moments throughout Eastern Uttar Pradesh
+              Capturing the beauty, culture and special moments throughout Eastern Jharkhand
             </p>
           </AnimatedSection>
         </div>
