@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminSettings from "./pages/AdminSettings";
 import Navbar from "./components/Navbar"; // Ensure Navbar is imported
+import PortfolioPage from "./pages/PortfolioPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
         <Navbar /> {/* Make sure Navbar is included */}
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/blogs-by-location" element={<BlogListings />} />

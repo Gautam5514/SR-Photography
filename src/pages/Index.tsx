@@ -2,12 +2,13 @@
 
 import Navbar from '@/components/Navbar';
 import AnimatedSection from '@/components/AnimatedSection';
-import { Play, Camera, Film, Heart, ArrowRight, MapPin, Users, Aperture, Clapperboard, Video, Sparkles, ChevronDown, Quote } from 'lucide-react';
+import { Play, Camera, Film, Heart, ArrowRight, MapPin, Users, Aperture, Clapperboard, Video, Sparkles, ChevronDown, Quote, Link } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom'; // <-- ADD THIS
 
 // More engaging, bilingual phrases for the Hero section
 const wittyPhrases = [
@@ -21,6 +22,7 @@ const Index = () => {
   const [currentLanguage, setCurrentLanguage] = useState<'en' | 'hi'>('en');
   const [displayText, setDisplayText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const targetText = wittyPhrases[phraseIndex][currentLanguage];
@@ -52,6 +54,10 @@ const Index = () => {
     };
   }, [phraseIndex, currentLanguage]);
 
+  const handlePortfolioClick = () => {
+    navigate('/portfolio'); // Tell it where to go
+  };
+
   return (
     // Using a more refined color scheme for backgrounds
     <div className="min-h-screen font-sans bg-soft-white text-rich-black">
@@ -80,12 +86,12 @@ const Index = () => {
               We don't just take pictures; we bottle up emotions. Based in Ballia, serving love stories across India.
             </p>
             <div className="flex flex-wrap justify-center items-center gap-3 mt-6">
-                <span className="text-white/80 text-sm font-medium mr-2">Available In:</span>
-                {['Jharkhand', 'Bihar', 'Uttar Pradesh'].map((state) => (
-                  <Badge key={state} variant="outline" className="bg-white/10 backdrop-blur-sm border-white/20 px-4 py-2 text-sm shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
-                    <MapPin className="w-3.5 h-3.5 mr-2 text-brown-300" /> {state}
-                  </Badge>
-                ))}
+              <span className="text-white/80 text-sm font-medium mr-2">Available In:</span>
+              {['Jharkhand', 'Bihar', 'Patna'].map((state) => (
+                <Badge key={state} variant="outline" className="bg-white/10 backdrop-blur-sm border-white/20 px-4 py-2 text-sm shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
+                  <MapPin className="w-3.5 h-3.5 mr-2 text-brown-300" /> {state}
+                </Badge>
+              ))}
             </div>
             <button className="group mt-8 px-8 py-4 bg-brown-500 rounded-full font-semibold hover:bg-white hover:text-rich-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-brown-300/50 flex items-center mx-auto">
               Make Your Day Timeless
@@ -94,8 +100,8 @@ const Index = () => {
           </AnimatedSection>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-white/70 animate-bounce">
-            <span className="text-xs font-sans">Explore</span>
-            <ChevronDown className="w-5 h-5" />
+          <span className="text-xs font-sans">Explore</span>
+          <ChevronDown className="w-5 h-5" />
         </div>
       </section>
 
@@ -127,7 +133,7 @@ const Index = () => {
           </div>
         </AnimatedSection>
       </section>
-      
+
       {/* ==================================
           3. REVAMPED PORTFOLIO PREVIEW
           ================================== */}
@@ -158,7 +164,11 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            <button className="px-8 py-3 bg-transparent border-2 border-brown-500 text-brown-500 rounded-full font-semibold hover:bg-brown-500 hover:text-white transition-colors duration-300 flex items-center mx-auto">
+            {/* 2. REPLACE <button> with <Link> and add the 'to' prop */}
+            <button
+              onClick={handlePortfolioClick}
+              className="px-8 py-3 bg-transparent border-2 border-brown-500 text-brown-500 rounded-full font-semibold hover:bg-brown-500 hover:text-white transition-colors duration-300 flex items-center mx-auto"
+            >
               View Full Portfolio <ArrowRight className="ml-2 w-4 h-4" />
             </button>
           </div>
@@ -173,9 +183,9 @@ const Index = () => {
           <div className="grid lg:grid-cols-5 gap-12 items-center">
             {/* Image Collage */}
             <div className="lg:col-span-2 relative h-96">
-              <img src="/suraj.webp" alt="Photographer Suraj Kumar" className="rounded-lg shadow-xl w-full h-full object-cover absolute z-10 transform hover:scale-105 transition-transform duration-500"/>
+              <img src="/suraj.webp" alt="Photographer Suraj Kumar" className="rounded-lg shadow-xl w-full h-full object-cover absolute z-10 transform hover:scale-105 transition-transform duration-500" />
               <div className="absolute -bottom-8 -right-8 w-48 h-48 rounded-lg shadow-lg border-4 border-white z-20 hidden md:block">
-                  <img src="/sura1.webp" alt="Camera Detail" className="w-full h-full object-cover"/>
+                <img src="/sura1.webp" alt="Camera Detail" className="w-full h-full object-cover" />
               </div>
             </div>
             {/* About Text */}
@@ -204,27 +214,27 @@ const Index = () => {
           ================================== */}
       <section className="py-24 bg-brown-100/30">
         <AnimatedSection className="container-custom">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold">Words from Our Couples</h2>
-            </div>
-            <div className="grid lg:grid-cols-3 gap-8">
-              {[
-                  { name: "Priya & Rohan", quote: "They didn't just take photos; they captured the soul of our wedding. We relive the magic every time we see our album!", image: "/images/couple1.jpg" },
-                  { name: "Anjali & Vikram", quote: "The Wedding Click team felt like family. Their professionalism and artistic vision are unmatched. The cinematic film still gives us goosebumps.", image: "/images/couple2.jpg" },
-                  { name: "Sneha & Amit", quote: "From the pre-wedding shoot to the final delivery, everything was flawless. Suraj and his team are true artists and wonderful people.", image: "/images/couple3.jpg" },
-              ].map(t => (
-                  <Card key={t.name} className="bg-white border-0 shadow-lg text-center">
-                      <CardContent className="p-8">
-                          <Avatar className="w-20 h-20 mx-auto mb-4 border-4 border-brown-200">
-                              <AvatarImage src={t.image} />
-                              <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
-                          </Avatar>
-                          <p className="text-gray-600 italic">"{t.quote}"</p>
-                          <p className="font-bold text-brown-500 mt-4">- {t.name}</p>
-                      </CardContent>
-                  </Card>
-              ))}
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold">Words from Our Couples</h2>
+          </div>
+          <div className="grid lg:grid-cols-3 gap-8">
+            {[
+              { name: "Priya & Rohan", quote: "They didn't just take photos; they captured the soul of our wedding. We relive the magic every time we see our album!", image: "/images/couple1.jpg" },
+              { name: "Anjali & Vikram", quote: "The Wedding Click team felt like family. Their professionalism and artistic vision are unmatched. The cinematic film still gives us goosebumps.", image: "/images/couple2.jpg" },
+              { name: "Sneha & Amit", quote: "From the pre-wedding shoot to the final delivery, everything was flawless. Suraj and his team are true artists and wonderful people.", image: "/images/couple3.jpg" },
+            ].map(t => (
+              <Card key={t.name} className="bg-white border-0 shadow-lg text-center">
+                <CardContent className="p-8">
+                  <Avatar className="w-20 h-20 mx-auto mb-4 border-4 border-brown-200">
+                    <AvatarImage src={t.image} />
+                    <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <p className="text-gray-600 italic">"{t.quote}"</p>
+                  <p className="font-bold text-brown-500 mt-4">- {t.name}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </AnimatedSection>
       </section>
 
@@ -232,7 +242,7 @@ const Index = () => {
           6. REVAMPED CONTACT CTA
           ================================== */}
       <section id="contact" className="py-24 bg-rich-black text-white relative overflow-hidden">
-        <img 
+        <img
           src="https://images.unsplash.com/photo-1550005869-d3a90a2a33c6?auto=format&fit=crop&w=2000&q=80"
           className="absolute inset-0 w-full h-full object-cover opacity-20"
           alt="Wedding details"
