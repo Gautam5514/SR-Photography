@@ -1,14 +1,16 @@
 "use client"; // Add this if using Next.js App Router
 
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
 import { Play, Camera, Film, Heart, ArrowRight, MapPin, Users, Aperture, Clapperboard, Video, Sparkles, ChevronDown, Quote, Link } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useEffect, useState } from 'react';
-import { Badge } from "@/components/ui/badge";
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom'; // <-- ADD THIS
+
+import { useNavigate } from 'react-router-dom';
+import HeroSlider from '@/components/HeroSlider';
+import { TEAM_MEMBERS, EQUIPMENT_LIST } from '@/data/mockData'; // Import Mock Data
 
 // More engaging, bilingual phrases for the Hero section
 const wittyPhrases = [
@@ -16,6 +18,79 @@ const wittyPhrases = [
   { en: "Your love story, unscripted and unforgettable.", hi: "आपकी प्रेम कहानी, बिना स्क्रिप्ट के, हमेशा के लिए यादगार।" },
   { en: "We focus on your moments, so you can focus on each other.", hi: "हम पलों को क़ैद करते हैं, ताकि आप एक दूसरे में खोए रहें।" }
 ];
+// Testimonial Data for Carousel
+const testimonials = [
+  {
+    name: "Andrew Taylor",
+    location: "From USA",
+    quote: "Thanks, we've gained clarity and confidence in our financial future. Personalized approach and expert guidance have been invaluable. Highly recommend!",
+    image: "/suraj.webp" // Using existing image for demo
+  },
+  {
+    name: "Priya & Rohan",
+    location: "Mumbai, India",
+    quote: "They didn't just take photos; they captured the soul of our wedding. We relive the magic every time we see our album!",
+    image: "/click.jpg"
+  },
+  {
+    name: "Anjali & Vikram",
+    location: "Delhi, India",
+    quote: "The Wedding Click team felt like family. Their professionalism and artistic vision are unmatched. The cinematic film still gives us goosebumps.",
+    image: "/click1.jpg"
+  },
+];
+
+const TestimonialCarousel = () => {
+  const [current, setCurrent] = useState(0);
+
+  const next = () => setCurrent((prev) => (prev + 1) % testimonials.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
+  return (
+    <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+      {/* Visual Side (Left) */}
+      <div className="relative w-full md:w-1/2 flex justify-center md:justify-end">
+        <div className="relative w-64 h-64 md:w-80 md:h-80">
+          {/* Background Circle with Quote */}
+          <div className="absolute top-0 left-0 w-48 h-48 bg-white border border-gray-100 rounded-full flex items-center justify-center shadow-sm z-0 transform -translate-x-12 -translate-y-4">
+            <Quote className="w-16 h-16 text-rich-black fill-current" />
+          </div>
+          {/* Image */}
+          <div className="absolute top-10 right-0 w-56 h-56 md:w-72 md:h-72 rounded-full overflow-hidden border-8 border-white shadow-2xl z-10">
+            <img
+              src={testimonials[current].image}
+              alt={testimonials[current].name}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Content Side (Right) */}
+      <div className="w-full md:w-1/2 text-center md:text-left space-y-6">
+        <h4 className="text-brown-500 font-bold tracking-widest text-xs uppercase">WHAT OUR CUSTOMERS FEEL ABOUT OUR SERVICES!</h4>
+        <p className="text-2xl md:text-3xl font-serif font-bold text-rich-black leading-tight">
+          {testimonials[current].quote}
+        </p>
+
+        <div className="flex items-center justify-center md:justify-start gap-4 pt-4">
+          {/* Navigation */}
+          <button onClick={prev} className="p-3 rounded-full border border-gray-200 hover:bg-brown-500 hover:text-white hover:border-brown-500 transition-all duration-300">
+            <ArrowRight className="w-5 h-5 transform rotate-180" />
+          </button>
+          <button onClick={next} className="p-3 rounded-full border border-gray-200 hover:bg-brown-500 hover:text-white hover:border-brown-500 transition-all duration-300">
+            <ArrowRight className="w-5 h-5" />
+          </button>
+
+          <div className="ml-4 text-left">
+            <h5 className="font-bold text-rich-black text-lg">{testimonials[current].name}</h5>
+            <span className="text-gray-500 text-sm">{testimonials[current].location}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Index = () => {
   const [phraseIndex, setPhraseIndex] = useState(0);
@@ -64,46 +139,9 @@ const Index = () => {
       <Navbar />
 
       {/* ==================================
-          1. REVAMPED HERO SECTION
+          1. REVAMPED HERO SECTION (Slider)
           ================================== */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden text-white">
-        <div className="absolute inset-0 z-0">
-          <video
-            src="/videos/wedding-hero.mp4" // IMPORTANT: Place your video here
-            poster="/images/wedding-poster.jpg" // A placeholder image
-            autoPlay loop muted playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-rich-black/50 to-transparent z-10" />
-        <div className="container-custom relative z-20 text-center px-6">
-          <AnimatedSection className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold min-h-[120px] md:min-h-[160px]" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
-              {displayText}
-              {isTyping && <span className="animate-pulse">|</span>}
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto">
-              We don't just take pictures; we bottle up emotions. Based in Ballia, serving love stories across India.
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-3 mt-6">
-              <span className="text-white/80 text-sm font-medium mr-2">Available In:</span>
-              {['Jharkhand', 'Bihar', 'Patna'].map((state) => (
-                <Badge key={state} variant="outline" className="bg-white/10 backdrop-blur-sm border-white/20 px-4 py-2 text-sm shadow-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 cursor-pointer">
-                  <MapPin className="w-3.5 h-3.5 mr-2 text-brown-300" /> {state}
-                </Badge>
-              ))}
-            </div>
-            <button className="group mt-8 px-8 py-4 bg-brown-500 rounded-full font-semibold hover:bg-white hover:text-rich-black transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-brown-300/50 flex items-center mx-auto">
-              Make Your Day Timeless
-              <Sparkles className="ml-3 w-5 h-5 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12" />
-            </button>
-          </AnimatedSection>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center space-y-1 text-white/70 animate-bounce">
-          <span className="text-xs font-sans">Explore</span>
-          <ChevronDown className="w-5 h-5" />
-        </div>
-      </section>
+      <HeroSlider />
 
       {/* ==================================
           2. REVAMPED WEDDING SERVICES SECTION
@@ -130,6 +168,14 @@ const Index = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <button
+              onClick={() => navigate('/my-work')}
+              className="px-8 py-3 bg-brown-500 text-white rounded-full font-semibold hover:bg-brown-600 transition-colors duration-300 flex items-center mx-auto shadow-md hover:shadow-lg transform hover:-translate-y-1"
+            >
+              View My Work <ArrowRight className="ml-2 w-4 h-4" />
+            </button>
           </div>
         </AnimatedSection>
       </section>
@@ -164,7 +210,6 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-12">
-            {/* 2. REPLACE <button> with <Link> and add the 'to' prop */}
             <button
               onClick={handlePortfolioClick}
               className="px-8 py-3 bg-transparent border-2 border-brown-500 text-brown-500 rounded-full font-semibold hover:bg-brown-500 hover:text-white transition-colors duration-300 flex items-center mx-auto"
@@ -210,96 +255,45 @@ const Index = () => {
       </section>
 
       {/* ==================================
-          5. REVAMPED TESTIMONIALS SECTION (Added)
+          5. REVAMPED TESTIMONIALS SECTION (Carousel)
           ================================== */}
-      <section className="py-24 bg-brown-100/30">
+      <section className="py-24 bg-white overflow-hidden">
         <AnimatedSection className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold">Words from Our Couples</h2>
-          </div>
-          <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              { name: "Priya & Rohan", quote: "They didn't just take photos; they captured the soul of our wedding. We relive the magic every time we see our album!", image: "/images/couple1.jpg" },
-              { name: "Anjali & Vikram", quote: "The Wedding Click team felt like family. Their professionalism and artistic vision are unmatched. The cinematic film still gives us goosebumps.", image: "/images/couple2.jpg" },
-              { name: "Sneha & Amit", quote: "From the pre-wedding shoot to the final delivery, everything was flawless. Suraj and his team are true artists and wonderful people.", image: "/images/couple3.jpg" },
-            ].map(t => (
-              <Card key={t.name} className="bg-white border-0 shadow-lg text-center">
-                <CardContent className="p-8">
-                  <Avatar className="w-20 h-20 mx-auto mb-4 border-4 border-brown-200">
-                    <AvatarImage src={t.image} />
-                    <AvatarFallback>{t.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <p className="text-gray-600 italic">"{t.quote}"</p>
-                  <p className="font-bold text-brown-500 mt-4">- {t.name}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <TestimonialCarousel />
         </AnimatedSection>
       </section>
 
       {/* ==================================
-          6. REVAMPED CONTACT CTA
+          6. CONTACT BANNER (Replaced Form)
           ================================== */}
-      <section id="contact" className="py-24 bg-rich-black text-white relative overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1550005869-d3a90a2a33c6?auto=format&fit=crop&w=2000&q=80"
-          className="absolute inset-0 w-full h-full object-cover opacity-20"
-          alt="Wedding details"
-        />
-        <AnimatedSection className="container-custom text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">Let's Tell Your Story</h2>
-          <p className="max-w-2xl mx-auto mb-8 text-white/80 text-lg">
-            Your wedding is a once-in-a-lifetime event. Let's work together to create something beautiful and everlasting.
-          </p>
-          <button className="group px-8 py-4 bg-brown-500 rounded-full font-semibold hover:bg-white hover:text-rich-black transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center mx-auto">
-            Check Our Availability
-            <Heart className="ml-3 w-5 h-5 transition-transform duration-300 group-hover:fill-current" />
+      <section id="contact" className="py-24 p-7 bg-rich-black text-white relative overflow-hidden">
+        <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div className="text-center lg:text-left space-y-4 max-w-2xl">
+            <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
+              <span className="text-white">Your Love Story. </span>
+              <span className="text-brown-300 italic">Our Masterpiece.</span>
+            </h2>
+            <p className="text-lg text-white/70">Let's build a timeline that aligns with your dreams. Expert guidance, every step of the way.</p>
+          </div>
+
+          <button
+            onClick={() => navigate('/contact')}
+            className="group relative px-8 py-4 bg-transparent border-2 border-white/20 rounded-full font-semibold text-white overflow-hidden transition-all duration-300 hover:border-brown-400 hover:text-brown-300"
+          >
+            <span className="relative z-10 flex items-center">
+              GET IN TOUCH <ArrowRight className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
           </button>
-        </AnimatedSection>
+        </div>
       </section>
 
       {/* ==================================
           7. REVAMPED FOOTER
           ================================== */}
-      <footer className="bg-off-black text-white py-16">
-        <div className="container-custom px-6">
-          <div className="grid md:grid-cols-3 gap-8 text-center md:text-left">
-            <div className="flex flex-col items-center md:items-start">
-              <div className="flex items-center space-x-3 text-2xl font-serif font-bold mb-4">
-                <div className="bg-brown-500 rounded-full p-2">
-                  <Clapperboard className="w-6 h-6 text-white" />
-                </div>
-                <span>The Wedding Click</span>
-              </div>
-              <p className="text-white/60 text-sm max-w-xs">Preserving love stories in Ballia and beyond with artistry and passion.</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                {['Wedding', 'Portfolio', 'About', 'Contact', 'Blog'].map((item) => (
-                  <li key={item}><a href={`#${item.toLowerCase()}`} className="text-sm text-white/80 hover:text-brown-300 transition-colors">{item}</a></li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Connect With Us</h4>
-              <div className="flex justify-center md:justify-start space-x-4 mb-4">
-                <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-xl"><FaFacebookF /></a>
-                <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-xl"><FaTwitter /></a>
-                <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-xl"><FaInstagram /></a>
-                <a href="#" className="text-white/80 hover:text-brown-300 transition-colors text-xl"><FaYoutube /></a>
-              </div>
-              <p className="text-sm text-white/60">theweddingclick@email.com</p>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-white/10 text-center text-sm text-white/50">
-            © {new Date().getFullYear()} The Wedding Click. Crafted with ❤️ for timeless memories.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
+
 
 export default Index;

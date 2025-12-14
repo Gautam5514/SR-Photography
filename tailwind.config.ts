@@ -1,29 +1,24 @@
-
-import type { Config } from "tailwindcss";
-
+/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
-  prefix: "",
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     container: {
       center: true,
       padding: '2rem',
       screens: {
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-        '2xl': '1400px',
+        '2xl': '1400px'
       }
     },
     extend: {
       colors: {
+        'rich-black': '#050505', // Deep luxurious black
+        'brown': {
+          300: '#D4AF37', // Metallic Gold
+          400: '#C5A028',
+          500: '#AA8820', // Dark Gold
+          900: '#2A2005'
+        },
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -66,27 +61,7 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
-        },
-        'rich-black': '#1A1A1A',
-        'off-black': '#222222',
-        'soft-white': '#F8F8F8',
-        'accent-blue': '#33C3F0',
-        'accent-brown': '#A67C52',
-        'brown': {
-          100: '#EFE6DD',
-          200: '#DBC7B4',
-          300: '#C7A992',
-          400: '#B38B6D',
-          500: '#A67C52',
-          600: '#8D6744',
-          700: '#755236',
-          800: '#5E3D28',
-          900: '#46281A',
-        },
-      },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Playfair Display', 'serif'],
+        }
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -110,22 +85,28 @@ export default {
             height: '0'
           }
         },
-        'fade-up': {
+        fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        'fade-in': {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        slowZoom: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.15)' },
         }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'fade-up': 'fade-up 0.5s ease-out forwards',
-        'fade-in': 'fade-in 0.5s ease-out forwards',
+        'fade-in-up': 'fadeInUp 1s ease-out forwards',
+        'slow-zoom': 'slowZoom 20s linear infinite alternate',
+        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
+      fontFamily: {
+        serif: ['"Playfair Display"', 'serif'], // Elegant wedding font
+        cinzel: ['"Cinzel"', 'serif'], // Royal headings
+        sans: ['"Inter"', 'sans-serif'], // Clean body text
       }
     }
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+}

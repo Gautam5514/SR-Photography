@@ -12,6 +12,13 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminSettings from "./pages/AdminSettings";
 import Navbar from "./components/Navbar"; // Ensure Navbar is imported
 import PortfolioPage from "./pages/PortfolioPage";
+import MyWork from "./pages/MyWork";
+import CategoryWork from "./pages/CategoryWork";
+import ClientDetails from "./pages/ClientDetails";
+import Contact from "./pages/Contact";
+
+import Team from "./pages/Team";
+import Equipment from "./pages/Equipment";
 
 const queryClient = new QueryClient();
 
@@ -25,12 +32,19 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/equipment" element={<Equipment />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/blogs-by-location" element={<BlogListings />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/settings" element={<AdminSettings />} />
+          <Route path="/my-work" element={<MyWork />} />
+          <Route path="/my-work/:categoryId" element={<CategoryWork />} />
+          <Route path="/my-work/:categoryId/:clientId" element={<ClientDetails />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
