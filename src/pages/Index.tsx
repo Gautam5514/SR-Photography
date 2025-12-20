@@ -191,12 +191,12 @@ const Index = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { img: "/click.jpg", title: "Sarah & Michael", desc: "Beach Wedding" },
-              { img: "/click1.jpg", title: "Emily & James", desc: "Garden Ceremony" },
+              { img: "/fame8.webp", title: "Sarah & Michael", desc: "Beach Wedding" },
+              { img: "/fame2.webp", title: "Emily & James", desc: "Garden Ceremony" },
               { img: "/click5.jpg", title: "Jessica & David", desc: "Rustic Barn" },
               { img: "/click2.jpg", title: "Anna & Thomas", desc: "City Wedding" },
               { img: "/click3.jpg", title: "Olivia & William", desc: "Forest Elopement" },
-              { img: "/click4.jpg", title: "Grace & Robert", desc: "Vineyard Ceremony" }
+              { img: "/click.jpg", title: "Grace & Robert", desc: "Vineyard Ceremony" }
             ].map((item) => (
               <div key={item.title} className="group relative rounded-lg overflow-hidden cursor-pointer aspect-w-1 aspect-h-1">
                 <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

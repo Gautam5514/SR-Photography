@@ -33,6 +33,9 @@ export const CATEGORIES = {
     puja: 'Puja',
     drone: 'Drone Shoot',
     photography: 'Photography',
+    smile: 'Smile',
+    focus: 'Close Shoot',
+    random: 'Random Click'
 };
 
 // Helpers
@@ -59,6 +62,9 @@ export const MOCK_DATA: Record<string, Client[]> = {
     puja: generateClients('puja', 4),
     drone: generateClients('drone', 5),
     photography: generateClients('photography', 6),
+    smile: generateClients('smile', 3),
+    focus: generateClients('focus', 3),
+    random: generateClients('random', 4),
 };
 
 export const TEAM_MEMBERS: TeamMember[] = [

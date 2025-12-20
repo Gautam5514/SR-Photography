@@ -4,11 +4,14 @@ import { Camera, Heart, Video, PartyPopper, Flame } from 'lucide-react'; // Exam
 
 const categories = [
     { id: 'marriage', name: 'Marriage', icon: Heart, description: 'Capturing your forever moments.', image: '/click.jpg', link: '/my-work/marriage' },
-    { id: 'engagement', name: 'Engagement', icon: Heart, description: 'The beginning of your journey.', image: '/click1.jpg', link: '/my-work/engagement' },
+    { id: 'engagement', name: 'Engagement', icon: Heart, description: 'The beginning of your journey.', image: '/fame8.webp', link: '/my-work/engagement' },
     { id: 'birthday', name: 'Birthday Party', icon: PartyPopper, description: 'Celebrating life\'s milestones.', image: '/click5.jpg', link: '/my-work/birthday' },
     { id: 'puja', name: 'Puja', icon: Flame, description: 'Divine and traditional ceremonies.', image: '/click2.jpg', link: '/my-work/puja' },
     { id: 'drone', name: 'Drone', icon: Video, description: 'Cinematic aerial perspectives.', image: '/click3.jpg', link: '/my-work/drone' },
-    { id: 'photography', name: 'Photography', icon: Camera, description: 'Professional shoots for all occasions.', image: '/click4.jpg', link: '/my-work/photography' },
+    { id: 'photography', name: 'Photography', icon: Camera, description: 'Professional shoots for all occasions.', image: '/fame5.webp', link: '/my-work/photography' },
+    { id: 'smile', name: 'smile', icon: Flame, description: 'Divine and traditional ceremonies.', image: '/fame3.webp', link: '/my-work/smile' },
+    { id: 'focus', name: 'Close Shoot', icon: Video, description: 'Cinematic aerial perspectives.', image: '/fame9.webp', link: '/my-work/focus' },
+    { id: 'random', name: 'Random Click', icon: Camera, description: 'Professional shoots for all occasions.', image: '/click4.jpg', link: '/my-work/random' },
 ];
 
 const MyWork = () => {

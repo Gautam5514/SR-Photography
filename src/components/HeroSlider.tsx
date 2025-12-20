@@ -12,11 +12,11 @@ import 'swiper/css/navigation';
 
 // --- WEDDING SPECIFIC DATA ---
 const slides = [
-     {
+    {
         id: 2,
         type: 'image',
         // Indian Wedding Vibes
-        src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=2000&auto=format&fit=crop',
+        src: '/fame2.webp',
         title: "Where Tradition Meets Timelessness.",
         subtitle: "From the vibrant Haldi to the emotional Vidai, we are there."
     },
@@ -28,12 +28,12 @@ const slides = [
         title: "Capturing Emotions, Crafting Legacies.",
         subtitle: "We don't just click photos; we bottle up the soul of your wedding."
     },
-   
+
     {
         id: 3,
         type: 'image',
         // Cinematic Couple Shot
-        src: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2000&auto=format&fit=crop',
+        src: '/fame7.webp',
         title: "Your Love Story, Cinema Quality.",
         subtitle: "Based in Ballia, telling love stories across Bihar & Jharkhand."
     }
